@@ -1,4 +1,9 @@
 <?php
+// Permitir solicitudes desde cualquier origen y configurar CORS
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
 // Configuración de la conexión a la base de datos SQL Server en Azure usando PDO
 $serverName = "tcp:virtualizacion.database.windows.net,1433";
 $database = "BaseVirtualizacion"; // Nombre de la base de datos
@@ -10,7 +15,7 @@ try {
     $conn = new PDO("sqlsrv:server=$serverName;Database=$database", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Determinar la acción basada en el parámetro 'accion' recibido en la solicitud POST
+    // Determinar la acción basada en el parámetro 'accion' recibido en la solicitud POST o GET
     $accion = isset($_POST['accion']) ? $_POST['accion'] : (isset($_GET['accion']) ? $_GET['accion'] : '');
 
     switch ($accion) {
