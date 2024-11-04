@@ -14,5 +14,8 @@
     "express": "^4.21.1",
     "mi-api-azure": "file:",
     "mssql": "^11.0.1"
-  }
+  },
+  "scripts": {
+  "start": "node app.js",
+  "test": "echo \"No test specified\" && exit 0"
 }
